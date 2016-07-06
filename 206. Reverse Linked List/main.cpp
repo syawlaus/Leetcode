@@ -43,7 +43,7 @@ public:
     //    return tail;
     //}
 
-    // 方法一：反转值
+    // 方法二：反转值
     ListNode* reverseList2(ListNode* head) {
         if (head == NULL) {
             return NULL;
