@@ -11,21 +11,22 @@ public:
             return true;
         }
 
-        // 判断 n 的仅包含 2、3、5
+        // 判断 n 的素数因子乘积是否仅包含 2、3、5
         if (n % 2 == 0) {
             return isUgly(n / 2);
         }
 
-        // 判断 n 的仅包含 3、5
+        // 判断 n 的素数因子乘积是否仅包含 3、5
         if (n % 3 == 0) {
             return isUgly(n / 3);
         }
 
-        // 判断 n 的仅包含 5
+        // 判断 n 的素数因子乘积是否仅包含 5
         if (n % 5 == 0) {
             return isUgly(n / 5);
         }
 
+        // n 的素数因子乘积不包含 2、3、5
         return false;
     }
 };
