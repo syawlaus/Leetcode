@@ -18,6 +18,5 @@ public:
 
 int main() {
     Solution sol;
-    int hw = sol.hammingWeight(11);
-    cout << hw << endl;
+    cout << sol.hammingWeight(11) << endl;
 }
