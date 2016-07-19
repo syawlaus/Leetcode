@@ -25,9 +25,9 @@ public:
         vector<int> intersec;
         for (int ele2 : nums2) {
             // 方式一
-            //for (MarkedNum mn1 : markedNums1) {             // 有问题
+            //for (MarkedNum mn1 : markedNums1) {             // 有问题，改为 MarkedNum& mn1 就好
             //    if (! mn1.isMarked && mn1.num == ele2) {
-            //        mn1.isMarked = true;                    // 有问题
+            //        mn1.isMarked = true;
             //        intersec.push_back(mn1.num);
             //        break;
             //    }
@@ -35,9 +35,9 @@ public:
 
             // 方式二
             //for (int i1 = 0; i1 < markedNums1.size(); i1++) {
-            //    MarkedNum mn1 = markedNums1[i1];            // 有问题
+            //    MarkedNum mn1 = markedNums1[i1];            // 有问题，改为 MarkedNum& mn1 就好
             //    if (! mn1.isMarked && mn1.num == ele2) {
-            //        mn1.isMarked = true;                    // 有问题
+            //        mn1.isMarked = true;
             //        intersec.push_back(mn1.num);
             //        cout << "            mn1 地址：" << &mn1 << endl;
             //        cout << "markedNums1[i1] 地址：" << &markedNums1[i1] << endl << endl;
