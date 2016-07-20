@@ -12,6 +12,7 @@ struct TreeNode {
 
 class Solution {
 public:
+    // 求 v, w 在以 root 为根节点的二叉树的最近公共祖先
     TreeNode* lowestCommonAncestor(TreeNode* root,
                                    TreeNode* v,
                                    TreeNode* w) {
@@ -26,8 +27,7 @@ public:
 
         // 第 2 步
         map<TreeNode*, TreeNode*> mapParents;
-        fillMapParents(root, mapParents);   // 生成 map
-        addToMap(root, NULL, mapParents);   // 给根节点加上父节点 NULL
+        fillMapParents(root, mapParents);   // 填充 map，不在 depth 函数里填充，避免重复计算hhh
 
         // 第 2.1 步
         int depthV = depth(root, v, mapParents);
@@ -50,7 +50,7 @@ public:
         }
 
         // 第 2.3 步
-        lowNode = traverseUpward(lowNode, depthDiff, mapParents);
+        traverseUpward(lowNode, depthDiff, mapParents);
 
         // 第 2.4 步
         if (highNode == lowNode) {
@@ -59,10 +59,42 @@ public:
 
         // 第 3 步
         while (highNode != lowNode) {
-            highNode = traverseUpward(highNode, 1, mapParents);
-            lowNode = traverseUpward(lowNode, 1, mapParents);
+            traverseUpward(highNode, 1, mapParents);
+            traverseUpward(lowNode, 1, mapParents);
         }
         return highNode;
+    }
+
+    // 填充 map，包含 root
+    void fillMapParents(TreeNode* root,
+                        map<TreeNode*, TreeNode*>& mapParents) {
+        fillMapParentsWithoutRoot(root, mapParents);
+        addToMap(root, NULL, mapParents);   // 给根节点加上父节点 NULL
+    }
+
+    // 填充 map，不包含 root
+    void fillMapParentsWithoutRoot(TreeNode* root,
+                                   map<TreeNode*, TreeNode*>& mapParents) {
+        if (root == NULL) {
+            return;
+        }
+
+        addToMap(root->left, root, mapParents);
+        addToMap(root->right, root, mapParents);
+
+        fillMapParentsWithoutRoot(root->left, mapParents);
+        fillMapParentsWithoutRoot(root->right, mapParents);
+    }
+
+    void addToMap(TreeNode* keyNode,
+                  TreeNode* valNode,
+                  map<TreeNode*, TreeNode*>& mapParents) {
+        if (keyNode == NULL) {
+            return;
+        }
+        if (mapParents.find(keyNode) == mapParents.end()) {
+            mapParents.insert(pair<TreeNode*, TreeNode*>(keyNode, valNode));
+        }
     }
 
     int depth(TreeNode* root,
@@ -77,31 +109,7 @@ public:
         return depth;
     }
 
-    void fillMapParents(TreeNode* root,
-                        map<TreeNode*, TreeNode*>& mapParents) {
-        if (root == NULL) {
-            return;
-        }
-
-        addToMap(root->left, root, mapParents);
-        addToMap(root->right, root, mapParents);
-
-        fillMapParents(root->left, mapParents);
-        fillMapParents(root->right, mapParents);
-    }
-
-    void addToMap(TreeNode* keyNode,
-                  TreeNode* valNode,
-                  map<TreeNode*, TreeNode*>& mapParents) {
-        if (keyNode == NULL) {
-            return;
-        }
-        if (mapParents.find(keyNode) == mapParents.end()) {
-            mapParents.insert(pair<TreeNode*, TreeNode*>(keyNode, valNode));
-        }
-    }
-
-    TreeNode* traverseUpward(TreeNode* node,
+    void traverseUpward(TreeNode*& node,  // 注意这里使用 TreeNode*& 指针引用，如果使用 TreeNode*，只操作了形参，实参是不变的
                         int n,
                         map<TreeNode*, TreeNode*>& mapParents){
         cout << node->val << " 往上 " << n << " 层到达 ";
@@ -109,29 +117,32 @@ public:
             node = mapParents.find(node)->second;
         }
         cout << node->val << endl;
-        return node;
+    }
+
+    void printMapParents(map<TreeNode*, TreeNode*>& mapParents) {
+        for (map<TreeNode*, TreeNode*>::iterator iter = mapParents.begin(); iter != mapParents.end(); iter++) {
+            TreeNode* node = iter->first;
+            TreeNode* parent = iter->second;
+            if (parent == NULL) {
+                cout << node->val << " 的父节点是 NULL" << endl;
+            }
+            else {
+                cout << node->val << " 的父节点是 " << parent->val << endl;
+            }
+        }
+        cout << endl;
+    }
+
+    void printAllNodesDepth(map<TreeNode*, TreeNode*>& mapParents,
+                            TreeNode* root) {
+        for (map<TreeNode*, TreeNode*>::iterator iter = mapParents.begin(); iter != mapParents.end(); iter++) {
+            TreeNode* node = iter->first;
+            int dep = depth(root, node, mapParents);
+            cout << node->val << " 的深度为 " << dep << endl;
+        }
+        cout << endl;
     }
 };
-
-void printMapParents(map<TreeNode*, TreeNode*>& mapParents) {
-    for (map<TreeNode*, TreeNode*>::iterator iter = mapParents.begin(); iter != mapParents.end(); iter++) {
-        TreeNode* node = iter->first;
-        TreeNode* parent = iter->second;
-        cout << node->val << " 的父节点是 " << parent->val << endl;
-    }
-    cout << endl;
-}
-
-void printAllNodesDepth(map<TreeNode*, TreeNode*>& mapParents,
-                        TreeNode* root,
-                        Solution sol) {
-    for (map<TreeNode*, TreeNode*>::iterator iter = mapParents.begin(); iter != mapParents.end(); iter++) {
-        TreeNode* node = iter->first;
-        int depth = sol.depth(root, node, mapParents);
-        cout << node->val << " 的深度为 " << depth << endl;
-    }
-    cout << endl;
-}
 
 int main() {
     // init data
@@ -161,19 +172,25 @@ int main() {
     Solution sol;
     map<TreeNode*, TreeNode*> mapParents;
     sol.fillMapParents(&n6, mapParents);
-    printMapParents(mapParents);
+    sol.printMapParents(mapParents);
 
     // 测试 depth
-    printAllNodesDepth(mapParents, &n6, sol);
+    sol.printAllNodesDepth(mapParents, &n6);
     
     // 测试 traverseUpward
-    sol.traverseUpward(&n2, 1, mapParents);
+    TreeNode* tempNode = &n2;
+    sol.traverseUpward(tempNode, 1, mapParents);
     
     // 测试 lowestCommonAncestor
     TreeNode* v = &n2;
     TreeNode* w = &n4;
     TreeNode* lca = sol.lowestCommonAncestor(&n6, v, w);
-    cout << endl << v->val << ", " << w->val << " 的 LCA 是 " << lca->val << endl;
+    cout << endl << v->val << ", " << w->val << " 的 LCA 是 " << lca->val << endl << endl;
+
+    v = &n2;
+    w = &n8;
+    lca = sol.lowestCommonAncestor(&n6, v, w);
+    cout << endl << v->val << ", " << w->val << " 的 LCA 是 " << lca->val << endl << endl;
 
     return 0;
 }
