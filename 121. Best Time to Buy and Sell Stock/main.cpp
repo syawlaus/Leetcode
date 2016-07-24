@@ -43,15 +43,16 @@ public:
     //    return (max_profit > 0 ? max_profit : 0);
     //}
 
-    int maxProfit3(vector<int>& prices) {   // wrong answer
-        int minBuyPrice = LONG_MAX;
+    int maxProfit3(vector<int>& prices) {   // Accepted
+        int minBuyPrice = LONG_MAX;         // int 的最大值，保证所有元素都不大于 minBuyPrice
         int max_profit = 0;
         for (int i = 0; i < prices.size(); i++) {
+            int currPrice = prices[i];
             // 更新 minBuyPrice
-            if (prices[i] < minBuyPrice) {
-                minBuyPrice = prices[i];
+            if (currPrice < minBuyPrice) {
+                minBuyPrice = currPrice;
             }
-            int profit = prices[i] - minBuyPrice;
+            int profit = currPrice - minBuyPrice;
             if (profit > max_profit) {
                 max_profit = profit;
             }
