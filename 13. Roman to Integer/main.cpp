@@ -37,7 +37,7 @@ public:
     // 把 romanNum 的某位数分离出来
     // 输入：原罗马数字，千/百/十/个位数，index 引用（可理解为用于返回两个数据）
     // 输出：组成对应位数的子字符串
-    string splitRomanNum(string romanNum, int scale, int& splitIdx) {
+    string splitRomanNum(string& romanNum, int scale, int& splitIdx) {
         // 配置
         char one, five, ten;
         if (scale == 1000) {
@@ -81,7 +81,7 @@ public:
     // 把罗马数字转为整型数字
     // 输入：罗马数字，进制
     // 输出：整型数字
-    int convertToInt(string s, int scale) {
+    int convertToInt(string& s, int scale) {
         int len = s.length();
         if (len == 0) {
             return 0;

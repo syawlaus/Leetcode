@@ -5,7 +5,7 @@ using namespace std;
 
 class Solution {
 public:
-    bool isAnagram(string s, string t) {
+    bool isAnagram(string& s, string& t) {
         int sizeS = s.size();
         int sizeT = t.size();
 
@@ -46,7 +46,7 @@ public:
         return true;
     }
 
-    bool isAnagram2(string s, string t) {
+    bool isAnagram2(string& s, string& t) {
 
         // s, t 长度不同，则 t 肯定不是 s 的易位构词
         if (s.size() != t.size()) {

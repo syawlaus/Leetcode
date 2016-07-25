@@ -40,7 +40,7 @@ public:
         return sumSquare;
     }
 
-    bool containsElement(vector<int> v, int n) {
+    bool containsElement(vector<int>& v, int n) {
         for (int element : v) {
             if (element == n) {
                 return true;

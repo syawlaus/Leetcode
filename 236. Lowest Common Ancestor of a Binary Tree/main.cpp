@@ -14,8 +14,8 @@ class Solution {
 public:
     // 求 v, w 在以 root 为根节点的二叉树的最近公共祖先
     TreeNode* lowestCommonAncestor(TreeNode* root,
-        TreeNode* v,
-        TreeNode* w) {
+                                   TreeNode* v,
+                                   TreeNode* w) {
         if (v == NULL || w == NULL) {
             return NULL;
         }
@@ -67,14 +67,14 @@ public:
 
     // 填充 map，包含 root
     void fillMapParents(TreeNode* root,
-        map<TreeNode*, TreeNode*>& mapParents) {
+                        map<TreeNode*, TreeNode*>& mapParents) {
         fillMapParentsWithoutRoot(root, mapParents);
         addToMap(root, NULL, mapParents);   // 给根节点加上父节点 NULL
     }
 
     // 填充 map，不包含 root
     void fillMapParentsWithoutRoot(TreeNode* root,
-        map<TreeNode*, TreeNode*>& mapParents) {
+                                   map<TreeNode*, TreeNode*>& mapParents) {
         if (root == NULL) {
             return;
         }
@@ -87,8 +87,8 @@ public:
     }
 
     void addToMap(TreeNode* keyNode,
-        TreeNode* valNode,
-        map<TreeNode*, TreeNode*>& mapParents) {
+                  TreeNode* valNode,
+                  map<TreeNode*, TreeNode*>& mapParents) {
         if (keyNode == NULL) {
             return;
         }
@@ -98,8 +98,8 @@ public:
     }
 
     int depth(TreeNode* root,
-        TreeNode* node,
-        map<TreeNode*, TreeNode*>& mapParents) {
+              TreeNode* node,
+              map<TreeNode*, TreeNode*>& mapParents) {
         // 利用 map 往上回溯，求出 node 的深度
         int depth = 1;  // root 深度为 1
         while (node != root) {
@@ -110,8 +110,8 @@ public:
     }
 
     void traverseUpward(TreeNode*& node,  // 注意这里使用 TreeNode*& 指针引用，如果使用 TreeNode*，只操作了形参，实参是不变的
-        int n,
-        map<TreeNode*, TreeNode*>& mapParents){
+                        int n,
+                        map<TreeNode*, TreeNode*>& mapParents){
         cout << node->val << " 往上 " << n << " 层到达 ";
         for (int i = 0; i < n; i++) {
             node = mapParents.find(node)->second;
@@ -134,7 +134,7 @@ public:
     }
 
     void printAllNodesDepth(map<TreeNode*, TreeNode*>& mapParents,
-        TreeNode* root) {
+                            TreeNode* root) {
         for (map<TreeNode*, TreeNode*>::iterator iter = mapParents.begin(); iter != mapParents.end(); iter++) {
             TreeNode* node = iter->first;
             int dep = depth(root, node, mapParents);
