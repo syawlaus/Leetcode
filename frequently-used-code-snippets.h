@@ -11,11 +11,13 @@
 */
 using namespace std;
 
+
 /**************************************************************************
 * defines
 */
 // 求数组长度
 #define ARRAY_LENGTH(a) (sizeof(a) / sizeof(a[0]))
+
 
 /**************************************************************************
 * consts
@@ -93,9 +95,9 @@ void printList(ListNode* head) {
 // 功能：判断 vector 是否包含 ele
 // 参数：vector, ele
 // 返回：bool
-bool containsElementInVector(vector<int>& v,
-                             int ele) {
-    for (int e : v) {
+template <class T> bool containsElementInVector(vector<T>& v,
+                                                T ele) {
+    for (T e : v) {
         if (e == ele) {
             return true;
         }
@@ -106,10 +108,10 @@ bool containsElementInVector(vector<int>& v,
 // 功能：添加 ele 到 vector
 // 参数：vector, ele
 // 返回：void
-void addToVectorUnique(vector<int>& v,
-                       int addEle) {
+template <class T> void addToVectorUnique(vector<T>& v,
+                                          T addEle) {
     // 添加前要先判断没有跟已有元素重复
-    for (int e : v) {
+    for (T e : v) {
         if (e == addEle) {
             return;
         }
@@ -121,8 +123,8 @@ void addToVectorUnique(vector<int>& v,
 // 功能：打印 vector
 // 参数：vector
 // 返回：void
-void printVector(vector<int>& v) {
-    for (int e : v) {
+template <class T> void printVector(vector<T>& v) {
+    for (T e : v) {
         cout << e << ' ';
     }
     cout << endl;
@@ -132,57 +134,48 @@ void printVector(vector<int>& v) {
 // 功能：更新 map 中 key 出现的次数
 // 参数：map, key
 // 返回：void
-void updateKeyCounts(map<int, int>& mapp,
-                     int key) {
-    map<int, int>::iterator iter = mapp.find(key);
+template <class T> void updateKeyCounts(map<T, int>& mapp,
+                                        T key) {
+    map<T, int>::iterator iter = mapp.find(key);
 
-    // 找到 key
-    if (iter != mapp.end()) {
-        (iter->second)++;
-    }
     // 找不到 key
-    else {
+    if (iter == mapp.end()) {
         mapp[key] = 1;
+    }
+    // 找到 key
+    else {
+        (iter->second)++;
     }
 }
 
 // 功能：添加 <key, val> 到 map
 // 参数：map, key, val
 // 返回：void
-void addToMap(map<TreeNode*, TreeNode*>& mapParents,
-              TreeNode* keyNode,
-              TreeNode* valNode) {
-    if (keyNode == NULL) {
+template <class T> void addToMap(map<T, T>& mapp,
+                                 T key,
+                                 T val) {
+    if (key == NULL) {
         return;
     }
 
-    // 找不到 key
-    if (mapParents.find(keyNode) == mapParents.end()) {
-        mapParents.insert(pair<TreeNode*, TreeNode*>(keyNode, valNode));
-    }
-}
+    map<T, T>::iterator iter = mapp.find(key);
 
-void addToMap(map<char, int>& mapp,
-              char key) {
-    map<char, int>::iterator iter = mapp.find(key);
-
-    // 找不到 c，新建 <key, val> 对
+    // 找不到 key，添加 <key, val>
     if (iter == mapp.end()) {
-        mapp[key] = 1;
+        mapp.insert(pair<T, T>(key, val));
     }
-    // 找到 key，val++
+    // 找到 key，更新 val
     else {
-        (iter->second)++;
+        (iter->second) = val;
     }
 }
 
 // 功能：判断 map 是否包含 key
 // 参数：map, key
 // 返回：bool
-bool containsKeyInMap(map<int, int>& mapp,
-                      int key) {
-    map<int, int>::iterator iter = mapp.find(key);
-    return iter != mapp.end();
+template <class T> bool containsKeyInMap(map<T, T>& mapp,
+                                         T key) {
+    return mapp.find(key) != mapp.end();
 }
 
 //****************binary tree*****************
@@ -205,8 +198,8 @@ bool isOdd(int n) {
 // 返回：bool
 bool isVowel(char c) {
     return (c == 'a' || c == 'A' ||
-        c == 'e' || c == 'E' ||
-        c == 'i' || c == 'I' ||
-        c == 'o' || c == 'O' ||
-        c == 'u' || c == 'U');
+            c == 'e' || c == 'E' ||
+            c == 'i' || c == 'I' ||
+            c == 'o' || c == 'O' ||
+            c == 'u' || c == 'U');
 }
