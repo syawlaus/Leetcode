@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <frequently-used-code-snippets.h>
 using namespace std;
 
 class Solution {
@@ -47,21 +48,12 @@ private:
         }
     }
 
-    bool isVowel(char c) {
-        return (c == 'a' || c == 'A' ||
-                c == 'e' || c == 'E' ||
-                c == 'i' || c == 'I' ||
-                c == 'o' || c == 'O' ||
-                c == 'u' || c == 'U');
-    }
-
     void swapVowel(char*& pHead,
                    char*& pTail) {
         char temp = *pHead;
         *pHead = *pTail;
         *pTail = temp;
     }
-
 };
 
 int main() {

@@ -1,13 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <frequently-used-code-snippets.h>
 using namespace std;
-
-// Definition for singly-linked list.
-struct ListNode {
-    int val;
-    ListNode* next;
-    ListNode(int x) : val(x), next(NULL) {}
-};
 
 class Solution {
 public:
@@ -56,20 +50,7 @@ private:
     const int INIT_VAL = -1;
 };
 
-void printList(ListNode* head) {
-    while (head != NULL) {
-        cout << head->val << ' ';
-        head = head->next;
-    }
-    cout << endl;
-}
-
-ListNode* convertArrayToList() {
-    // 把 arr 转为 list，方便测试
-    int arr[] = { 1, 2, 3, 4, 5 };
-    int len = sizeof(arr) / sizeof(arr[0]);
-    cout << "arr len = " << len << endl;
-
+ListNode* convertArrayToList(int* arr, int len) {
     // 用 vector 保存所有指针
     vector<ListNode*> nodes;
     for (int i = 0; i < len; i++) {
@@ -86,7 +67,19 @@ ListNode* convertArrayToList() {
 }
 
 int main() {
+    // 测试一
     Solution sol;
-    ListNode* head = convertArrayToList();
-    printList(sol.swapPairs(head));
+    int arr1[] = { 1 };
+    ListNode* list1 = convertArrayToList(arr1, ARRAY_LENGTH(arr1));
+    printList(sol.swapPairs(list1));
+
+    // 测试二
+    int arr2[] = { 1, 2, 3, 4 };
+    ListNode* list2 = convertArrayToList(arr2, ARRAY_LENGTH(arr2));
+    printList(sol.swapPairs(list2));
+
+    // 测试三
+    int arr3[] = { 1, 2, 3, 4, 5 };
+    ListNode* list3 = convertArrayToList(arr3, ARRAY_LENGTH(arr3));
+    printList(sol.swapPairs(list3));
 }

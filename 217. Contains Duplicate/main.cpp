@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <frequently-used-code-snippets.h>
 using namespace std;
 
 class Solution {
@@ -17,16 +18,11 @@ public:
         }
         return false;
     }
-
-    bool containsKey(map<int, int>& mapp, int key) {
-        map<int, int>::iterator iter = mapp.find(key);
-        return iter != mapp.end();
-    }
 };
 
 int main() {
-    int a[] = { 1, 2, 3, 4, 5, 6, 7, 7};
-    int len = sizeof(a) / sizeof(a[0]);
+    int a[] = { 1, 2, 3, 4, 5, 6, 7};
+    int len = ARRAY_LENGTH(a);
     vector<int> v(a, a + len);
 
     Solution sol;

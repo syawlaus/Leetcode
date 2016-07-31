@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <frequently-used-code-snippets.h>
 using namespace std;
 
 class Solution {
@@ -38,15 +39,6 @@ public:
             n /= 10;
         }
         return sumSquare;
-    }
-
-    bool containsElement(vector<int>& v, int n) {
-        for (int element : v) {
-            if (element == n) {
-                return true;
-            }
-        }
-        return false;
     }
 };
 

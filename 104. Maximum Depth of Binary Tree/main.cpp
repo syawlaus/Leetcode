@@ -1,14 +1,6 @@
 #include <iostream>
+#include <frequently-used-code-snippets.h>
 using namespace std;
-
-struct TreeNode {
-    int val;
-    TreeNode* left;
-    TreeNode* right;
-
-    // constructor
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
 
 class Solution {
 public:

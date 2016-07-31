@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <frequently-used-code-snippets.h>
 using namespace std;
 
 class Solution {
@@ -9,28 +10,11 @@ public:
         for (int ele1 : nums1) {
             for (int ele2 : nums2) {
                 if (ele2 == ele1) {
-                    addToIntersec(ele2, intersec);
+                    addToIntersec(intersec, ele2);
                 }
             }
         }
-
         return intersec;
-    }
-
-    void addToIntersec(int addEle, vector<int>& intersec) {
-        // 添加前要先判断没有跟已有元素重复
-        bool exist = false;
-        for (int ele: intersec) {
-            if (addEle == ele) {
-                exist = true;
-                break;
-            }
-        }
-
-        // 添加到 intersec
-        if (! exist) {
-            intersec.push_back(addEle);
-        }
     }
 };
 
@@ -46,8 +30,5 @@ int main() {
     nums2.push_back(2);
 
     Solution sol;
-    vector<int> intersec = sol.intersection(nums1, nums2);
-    for (int ele : intersec) {
-        cout << ele << ' ';
-    }
+    printVector(sol.intersection(nums1, nums2));
 }

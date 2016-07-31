@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include <frequently-used-code-snippets.h>
 using namespace std;
 
 class Solution {
@@ -105,19 +106,6 @@ public:
 
         // mapS, mapT 完全相同，则 t 是易位构词
         return true;
-    }
-
-    void addToMap(char c, map<char, int>& mapp) {
-        map<char, int>::iterator iter = mapp.find(c);
-
-        // 找不到 c，新建 <key, val> 对
-        if (iter == mapp.end()) {
-            mapp.insert(pair<char, int> (c, 1));
-        }
-        // 找到 c，val++
-        else {
-            (*iter).second ++;
-        }
     }
 };
 

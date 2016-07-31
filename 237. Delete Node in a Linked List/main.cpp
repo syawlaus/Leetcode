@@ -1,12 +1,6 @@
 #include <iostream>
+#include <frequently-used-code-snippets.h>
 using namespace std;
-
-// Definition for singly-linked list.
-struct ListNode {
-    int val;
-    ListNode* next;
-    ListNode(int x) : val(x), next(NULL) {}
-};
 
 class Solution {
 public:
@@ -31,16 +25,6 @@ public:
     }
 };
 
-void printSingleLinkedList(ListNode* head) {
-    while (head != NULL) {
-        cout << "address: " << head << endl;
-        cout << "    val: " << head->val << endl;
-        cout << "   next: " << head->next << endl;
-        head = head->next;
-    }
-    cout << "-------------------" << endl;
-}
-
 int main() {
     ListNode node0(0);
     ListNode node1(1);
@@ -57,11 +41,11 @@ int main() {
     node5.next = NULL;
 
     // 输出原链表
-    printSingleLinkedList(&node0);
+    printList(&node0);
 
     Solution sol;
-    sol.deleteNode(&node0);
+    sol.deleteNode(&node2);
 
     // 输出结果链表
-    printSingleLinkedList(&node0);
+    printList(&node0);
 }

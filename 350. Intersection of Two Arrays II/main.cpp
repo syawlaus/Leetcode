@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <frequently-used-code-snippets.h>
 using namespace std;
 
 class Solution {
@@ -88,13 +89,6 @@ private:
         return markedNums;
     }
 };
-
-void printVector(vector<int>& v) {
-    for (int ele : v) {
-        cout << ele << ' ';
-    }
-    cout << endl;
-}
 
 int main() {
     // ³õÊ¼»¯ nums1

@@ -12,14 +12,12 @@ public:
         // 遍历 char 数组，取每个字母出来，(letter - 64) * (26 ^ pow)
         // index 越小的字母，表示其 26 次幂越高
         // 比如，字母 index = 0，size = 2，其 26 次幂 = size - 1 - index
-
         int sum = 0;
         for (int i = 0; i < size; i++) {
             char letter = letterArr[i];
             int pow26 = size - 1 - i;
             sum += (letter - 64) * pow(26, pow26);
         }
-
         return sum;
     }
 };

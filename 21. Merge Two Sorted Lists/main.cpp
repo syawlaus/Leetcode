@@ -1,12 +1,6 @@
 #include <iostream>
+#include <frequently-used-code-snippets.h>
 using namespace std;
-
-// Definition for singly-linked list.
-struct ListNode {
-    int val;
-    ListNode* next;
-    ListNode(int x) : val(x), next(NULL) {}
-};
 
 class Solution {
 public:
@@ -70,14 +64,6 @@ private:
         }
     }
 };
-
-void printList(ListNode* h) {
-    while (h != NULL) {
-        cout << h->val << ' ';
-        h = h->next;
-    }
-    cout << endl;
-}
 
 int main() {
     // h1

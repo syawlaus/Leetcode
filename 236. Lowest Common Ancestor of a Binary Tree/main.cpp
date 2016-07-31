@@ -1,14 +1,7 @@
 #include <iostream>
 #include <map>
+#include <frequently-used-code-snippets.h>
 using namespace std;
-
-// Definition for a binary tree node.
-struct TreeNode {
-    int val;
-    TreeNode* left;
-    TreeNode* right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
 
 class Solution {
 public:
@@ -86,16 +79,7 @@ public:
         fillMapParentsWithoutRoot(root->right, mapParents);
     }
 
-    void addToMap(TreeNode* keyNode,
-                  TreeNode* valNode,
-                  map<TreeNode*, TreeNode*>& mapParents) {
-        if (keyNode == NULL) {
-            return;
-        }
-        if (mapParents.find(keyNode) == mapParents.end()) {
-            mapParents.insert(pair<TreeNode*, TreeNode*>(keyNode, valNode));
-        }
-    }
+    
 
     int depth(TreeNode* root,
               TreeNode* node,

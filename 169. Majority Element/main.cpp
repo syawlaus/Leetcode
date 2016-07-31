@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <frequently-used-code-snippets.h>
 using namespace std;
 
 class Solution {
@@ -10,7 +11,7 @@ public:
 
         // 遍历数组，添加到 mapp
         for (int i : nums) {
-            addToMap(i, mapp);
+            addToMap(mapp, i);
         }
 
         // 遍历 mapp，找出 majority element
@@ -25,21 +26,7 @@ public:
                 majorityEle = key;
             }
         }
-
         return majorityEle;
-    }
-
-    void addToMap(int key, map<int, int>& mapp) {
-        map<int, int>::iterator iter = mapp.find(key);
-
-        // 找到 key
-        if (iter != mapp.end()) {
-            (iter->second)++;
-        }
-        // 找不到 key
-        else {
-            mapp[key] = 1;
-        }
     }
 };
 
@@ -47,7 +34,7 @@ int main() {
     vector<int> nums;
     nums.push_back(1);
     nums.push_back(2);
-    nums.push_back(4);
+    nums.push_back(2);
     nums.push_back(4);
     nums.push_back(4);
 

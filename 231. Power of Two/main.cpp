@@ -1,4 +1,5 @@
 #include <iostream>
+#include <frequently-used-code-snippets.h>
 using namespace std;
 
 class Solution {
@@ -27,9 +28,6 @@ public:
         return false;
     }
 
-    bool isOdd(int n) {
-        return (n % 2 != 0);
-    }
 };
 
 int main() {
