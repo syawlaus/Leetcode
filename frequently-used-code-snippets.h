@@ -18,6 +18,9 @@ using namespace std;
 // 求数组长度
 #define ARRAY_LENGTH(a) (sizeof(a) / sizeof(a[0]))
 
+// 求两个数的较大值
+#define MAX_TWO(a, b) (a > b ? a : b)
+
 
 /**************************************************************************
 * consts
