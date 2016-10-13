@@ -95,6 +95,17 @@ void printList(ListNode* head) {
 }
 
 //*******************vector*******************
+// 功能：把数组转换为 vector
+// 参数：数组
+// 返回：新建的一个 vector
+template <class T> vector<T> convertArrayToVector(T *array, int len) {
+    vector<T> v;
+    for (int i = 0; i < len; i++) {
+        v.push_back(array[i]);
+    }
+    return v;
+}
+
 // 功能：判断 vector 是否包含 ele
 // 参数：vector, ele
 // 返回：bool
@@ -108,7 +119,7 @@ template <class T> bool containsElementInVector(vector<T>& v,
     return false;
 }
 
-// 功能：添加 ele 到 vector
+// 功能：添加 ele 到 vector，且保证 ele 唯一
 // 参数：vector, ele
 // 返回：void
 template <class T> void addToVectorUnique(vector<T>& v,
