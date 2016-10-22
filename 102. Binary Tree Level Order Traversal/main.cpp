@@ -3,7 +3,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int>> levelOrderBottom(TreeNode *root) {
+    vector<vector<int>> levelOrder(TreeNode *root) {
         // 初始化
         vector<vector<int>> vv;
         if (root == NULL) {
@@ -39,30 +39,7 @@ public:
             vv[vv.size() - 1].push_back(queue[i]->val);
         }
 
-        // 反转 vv
-        vector<vector<int>> reverseVv;
-        for (int i = vv.size() - 1; i >= 0; i--) {
-            reverseVv.push_back(vv[i]);
-        }
-
-        return reverseVv;
-    }
-
-    void BFS(TreeNode *root) {
-        vector<TreeNode *> queue;
-        queue.push_back(root);
-        int index = 0;
-        while (index < queue.size()) {
-            TreeNode *node = queue[index];
-            index++;
-            cout << node->val << ' ';
-
-            if (node->left != NULL)
-                queue.push_back(node->left);
-
-            if (node->right != NULL)
-                queue.push_back(node->right);
-        }
+        return vv;
     }
 };
 
@@ -82,5 +59,5 @@ int main() {
 
     // Solution
     Solution sol;
-    vector<vector<int>> vv = sol.levelOrderBottom(&node3);
+    vector<vector<int>> vv = sol.levelOrder(&node3);
 }
