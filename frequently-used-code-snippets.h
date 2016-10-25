@@ -5,6 +5,7 @@
 #include <vector>
 #include <stack>
 #include <map>
+#include <math.h>
 
 
 /**************************************************************************
