@@ -219,3 +219,8 @@ bool isVowel(char c) {
             c == 'o' || c == 'O' ||
             c == 'u' || c == 'U');
 }
+
+// log 对数函数换底公式
+double logbase(double n, double base) {
+    return log(n) / log(base);
+}

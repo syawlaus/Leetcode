@@ -1,5 +1,4 @@
-#include <iostream>
-#include <math.h>
+#include <frequently-used-code-snippets.h>
 using namespace std;
 
 class Solution {
@@ -33,12 +32,6 @@ public:
         double roundM = round(m);
         double absoluteDiff = abs(m - roundM);  // 取两者之差的绝对值
         return (absoluteDiff < EPSILON);
-
-    }
-
-    // log 换底公式
-    double logbase(double a, double base) {
-        return log(a) / log(base);
     }
 };
 
