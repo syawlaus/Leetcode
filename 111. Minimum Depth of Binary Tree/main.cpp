@@ -25,15 +25,17 @@ public:
             rightMinDepth = minDepth(root->right);
         }
 
-        // 返回
+        // 返回：root 只有左子树
         if (leftMinDepth != NOT_LEAF_NODE && rightMinDepth == NOT_LEAF_NODE) {
-            return 1 + leftMinDepth;
+            return leftMinDepth + 1;
         }
+        // 返回：root 只有右子树
         if (leftMinDepth == NOT_LEAF_NODE && rightMinDepth != NOT_LEAF_NODE) {
-            return 1 + rightMinDepth;
+            return rightMinDepth + 1;
         }
+        // 返回：root 有左右子树
         else {      // 即 leftMinDepth != NOT_LEAF_NODE && rightMinDepth != NOT_LEAF_NODE
-            return 1 + MIN_TWO(leftMinDepth, rightMinDepth);
+            return MIN_TWO(leftMinDepth, rightMinDepth) + 1;
         }
     }
 };
