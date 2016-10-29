@@ -24,6 +24,9 @@ using namespace std;
 // 求两个数的较大值
 #define MAX_TWO(a, b) (a > b ? a : b)
 
+// 求两个数的较小值
+#define MIN_TWO(a, b) (a < b ? a : b)
+
 
 /**************************************************************************
 * consts
@@ -187,6 +190,27 @@ template <class T> void addToMap(map<T, T>& mapp,
     }
 }
 
+// 功能：添加 key 到 map，如果 key 已存在，val++
+// 参数：map, key
+// 返回：void
+template <class T> void incrementKeyCountInMap(map<T, int>& mapp,
+                                               T key) {
+    if (key == NULL) {
+        return;
+    }
+
+    map<T, int>::iterator iter = mapp.find(key);
+
+    // 找不到 key，添加 <key, val>
+    if (iter == mapp.end()) {
+        mapp.insert(pair<T, int>(key, 1));
+    }
+    // 找到 key，val++
+    else {
+        (iter->second)++;
+    }
+}
+
 // 功能：判断 map 是否包含 key
 // 参数：map, key
 // 返回：bool
@@ -196,10 +220,11 @@ template <class T> bool containsKeyInMap(map<T, T>& mapp,
 }
 
 //****************binary tree*****************
-// 功能：BFS 打印二叉树
-// 参数：二叉树 root
-// 返回：void
-void printBinaryTree(TreeNode* root) {
+// 功能：判断一个节点是否叶子
+// 参数：TreeNode *node
+// 返回：bool
+bool isLeafNode(TreeNode *node) {
+    return (node->left == NULL && node->right == NULL);
 }
 
 //*******************others*******************
