@@ -49,7 +49,7 @@ using namespace std;
 // 单向链表定义
 struct ListNode {
     int val;
-    ListNode* next;
+    ListNode *next;
     ListNode(int x) : val(x), next(NULL) {}
 };
 
@@ -92,7 +92,7 @@ struct TreeNode {
 // 功能：打印单向链表
 // 参数：链表首元素指针
 // 返回：void
-void printList(ListNode* head) {
+void printList(ListNode *head) {
     while (head != NULL) {
         cout << head->val << ' ';
         head = head->next;
@@ -171,18 +171,18 @@ template <class T> void updateKeyCounts(map<T, int>& mapp,
 // 功能：添加 <key, val> 到 map
 // 参数：map, key, val
 // 返回：void
-template <class T> void addToMap(map<T, T>& mapp,
-                                 T key,
-                                 T val) {
+template <class Tkey, class Tval> void addToMap(map<Tkey, Tval>& mapp,
+                                                Tkey key,
+                                                Tval val) {
     if (key == NULL) {
         return;
     }
 
-    map<T, T>::iterator iter = mapp.find(key);
+    map<Tkey, Tval>::iterator iter = mapp.find(key);
 
     // 找不到 key，添加 <key, val>
     if (iter == mapp.end()) {
-        mapp.insert(pair<T, T>(key, val));
+        mapp.insert(pair<Tkey, Tval>(key, val));
     }
     // 找到 key，更新 val
     else {
@@ -214,8 +214,8 @@ template <class T> void incrementKeyCountInMap(map<T, int>& mapp,
 // 功能：判断 map 是否包含 key
 // 参数：map, key
 // 返回：bool
-template <class T> bool containsKeyInMap(map<T, T>& mapp,
-                                         T key) {
+template <class Tkey, Tval> bool containsKeyInMap(map<Tkey, Tval>& mapp,
+                                                  Tkey key) {
     return mapp.find(key) != mapp.end();
 }
 
