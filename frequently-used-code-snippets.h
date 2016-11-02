@@ -214,7 +214,7 @@ template <class T> void incrementKeyCountInMap(map<T, int>& mapp,
 // 功能：判断 map 是否包含 key
 // 参数：map, key
 // 返回：bool
-template <class Tkey, Tval> bool containsKeyInMap(map<Tkey, Tval>& mapp,
+template <class Tkey, class Tval> bool containsKeyInMap(map<Tkey, Tval>& mapp,
                                                   Tkey key) {
     return mapp.find(key) != mapp.end();
 }
