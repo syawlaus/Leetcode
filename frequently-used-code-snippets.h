@@ -215,7 +215,7 @@ template <class T> void incrementKeyCountInMap(map<T, int>& mapp,
 // ²ÎÊý£ºmap, key
 // ·µ»Ø£ºbool
 template <class Tkey, class Tval> bool containsKeyInMap(map<Tkey, Tval>& mapp,
-                                                  Tkey key) {
+                                                        Tkey key) {
     return mapp.find(key) != mapp.end();
 }
 
