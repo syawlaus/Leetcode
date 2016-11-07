@@ -150,6 +150,17 @@ template <class T> void printVector(vector<T>& v) {
     cout << endl;
 }
 
+// 功能：复制 vector
+// 参数：vector
+// 返回：vector
+template <class T> vector<T> copyVector(vector<T>& v) {
+    vector<T> copyV;
+    for (T e : v) {
+        copyV.push_back(e);
+    }
+    return copyV;
+}
+
 //********************map*********************
 // 功能：更新 map 中 key 出现的次数
 // 参数：map, key
