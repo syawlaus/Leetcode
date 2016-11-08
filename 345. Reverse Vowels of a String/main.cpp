@@ -1,7 +1,4 @@
-#include <iostream>
-#include <string>
 #include <frequently-used-code-snippets.h>
-using namespace std;
 
 class Solution {
 public:
@@ -11,8 +8,8 @@ public:
             return s;
         }
 
-        char* pHead = &s[0];
-        char* pTail = &s[len - 1];
+        char *pHead = &s[0];
+        char *pTail = &s[len - 1];
 
         while (true) {
             findNextVowelForward(pHead);

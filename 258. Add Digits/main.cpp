@@ -29,19 +29,6 @@ public:
             vecDigits.clear();
         }
     }
-    
-    int getNumDigits(int num, vector<int>& vecDigits) {
-        vecDigits.clear();
-
-        while (true) {
-            if (num == 0) {
-                return vecDigits.size();
-            }
-            int lastDigis = num % 10;
-            vecDigits.push_back(lastDigis);
-            num /= 10;
-        }
-    }
 
     int addDigits2(int num) {
         while (num / 10 > 0) {      // ×ÝÑ­»·
@@ -77,6 +64,20 @@ public:
     int addDigits4(int num) {
         int result = (num - 1) % 9 + 1;
         return result;
+    }
+
+private:
+    int getNumDigits(int num, vector<int>& vecDigits) {
+        vecDigits.clear();
+
+        while (true) {
+            if (num == 0) {
+                return vecDigits.size();
+            }
+            int lastDigis = num % 10;
+            vecDigits.push_back(lastDigis);
+            num /= 10;
+        }
     }
 };
 

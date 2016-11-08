@@ -1,31 +1,5 @@
-#include <iostream>
 #include <frequently-used-code-snippets.h>
 using namespace std;
-
-class Solution {
-public:
-    int maxDepth(TreeNode* root) {
-        // root 为空结点
-        if (root == NULL) {
-            return 0;
-        }
-
-        // root 是叶子节点
-        if (root->left == NULL &&
-            root->right == NULL) {
-            return 1;
-        }
-
-        // 计算 root 左子树深度
-        int leftMaxDepth = maxDepth(root->left);
-
-        // 计算 root 右子树深度
-        int rightMaxDepth = maxDepth(root->right);
-
-        // 以当前节点为根节点的树的最大深度 = max(当前节点的左子树最大深度, 当前节点的右子树最大深度) + 1
-        return (leftMaxDepth >= rightMaxDepth) ? (leftMaxDepth + 1) : (rightMaxDepth + 1);
-    }
-};
 
 int main() {
     TreeNode node1(1);
@@ -48,7 +22,6 @@ int main() {
 
     node4.left = &node8;
 
-    Solution sol;
-    int maxDepth = sol.maxDepth(&node1);
-    cout << maxDepth << endl;
+    int maxDep = maxDepth(&node1);
+    cout << maxDep << endl;
 }

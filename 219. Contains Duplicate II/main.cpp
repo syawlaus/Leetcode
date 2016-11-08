@@ -18,7 +18,7 @@ public:
         for (int i = 0; i < nums.size(); i++) {
             int key = nums[i];
             int val = i;
-            map<int, int>::iterator iter = m.find(key);
+            map<int, int>::iterator iter = m.find(key);     // O(logN)
             if (iter != m.end()) {   // ÕÒµ½ÖØ¸´ÔªËØ
                 if (val - iter->second <= k) {
                     return true;

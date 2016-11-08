@@ -25,13 +25,13 @@ public:
     int guessNumber(int n) {
         int low = 1;
         int high = n;
-        int myGuess = getAverage(low, high);
+        int myGuess = average(low, high);
 
         bool twoNumsLeft = false;   // 猜到最后会剩下两个相邻的数，一奇一偶
         int result = guess(myGuess);
         while (result != GOT_IT) {
             if (result == GUESS_LOWER_NEXT_TIME) {  // 下次往低猜
-                high = getAverage(low, high);
+                high = average(low, high);
             }
             else {                                  // 下次往高猜
                 if (twoNumsLeft) {
@@ -48,16 +48,10 @@ public:
             }
 
             // 继续猜
-            myGuess = getAverage(low, high);
+            myGuess = average(low, high);
             result = guess(myGuess);
         }
         return myGuess;
-    }
-
-private:
-    int getAverage(int low, int high) {
-        //return (low + high) / 2;    // 这样会 int 溢出
-        return low + (high - low) / 2;
     }
 };
 

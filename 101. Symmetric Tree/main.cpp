@@ -1,5 +1,4 @@
 #include <frequently-used-code-snippets.h>
-#include <math.h>
 using namespace std;
 
 class Solution {
@@ -24,62 +23,6 @@ private:
         copyRoot->left = copyTree(root->left);
         copyRoot->right = copyTree(root->right);
         return copyRoot;
-    }
-
-    TreeNode* invertTreeInPlace(TreeNode *root) {
-        // root 为空结点
-        if (root == NULL) {
-            return NULL;
-        }
-
-        // root 是叶子节点
-        if (root->left == NULL &&
-            root->right == NULL) {
-            return root;
-        }
-
-        // 反转左子树
-        TreeNode *left = invertTreeInPlace(root->left);
-
-        // 反转右子树
-        TreeNode *right = invertTreeInPlace(root->right);
-
-        // 交换左右子结点
-        TreeNode *temp = root->left;
-        root->left = root->right;
-        root->right = temp;
-
-        // 返回根结点
-        return root;
-    }
-
-     bool isSameTree(TreeNode *p, TreeNode *q) {
-        if (p == NULL && q == NULL) {
-            return true;
-        }
-        // 结构不同
-        if (p != NULL && q == NULL) {
-            return false;
-        }
-        // 结构不同
-        if (p == NULL && q != NULL) {
-            return false;
-        }
-        // 结构相同
-        else {      // 即 p != NULL && q != NULL
-            // 值不同
-            if (p->val != q->val) {
-                return false;
-            }
-            // 值相同
-            bool isSameLeft = isSameTree(p->left, q->left);
-            bool isSameRight = isSameTree(p->right, q->right);
-
-            if (isSameLeft && isSameRight) {
-                return true;
-            }
-            return false;
-        }
     }
 };
 

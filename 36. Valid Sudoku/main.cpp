@@ -1,6 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <map>
+#include <frequently-used-code-snippets.h>
 using namespace std;
 
 class Solution {
@@ -83,14 +81,6 @@ private:
             (iter->second) = val;
         }
     }
-
-    // 功能：判断 map 是否包含 key
-    // 参数：map, key
-    // 返回：bool
-    bool containsKeyInMap(map<char, bool>& mapp,
-                          char key) {
-        return mapp.find(key) != mapp.end();
-    }
 };
 
 int main() {
@@ -119,6 +109,6 @@ int main() {
     };
 
     Solution sol;
-    cout << sol.isValidSudoku(full_filled_board) << endl;       // false
-    cout << sol.isValidSudoku(partially_filled_board) << endl;  // true
+    cout << sol.isValidSudoku(full_filled_board) << endl;
+    cout << sol.isValidSudoku(partially_filled_board) << endl;
 }

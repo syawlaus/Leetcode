@@ -100,6 +100,25 @@ void printList(ListNode *head) {
     cout << endl;
 }
 
+// 功能：把数组转为链表
+// 参数：数组，数组长度
+// 返回：链表首节点指针
+ListNode* convertArrayToList(int* arr, int len) {
+    // 用 vector 保存所有指针
+    vector<ListNode*> nodes;
+    for (int i = 0; i < len; i++) {
+        ListNode* node = new ListNode(arr[i]);      // 新建 ListNode*
+        nodes.push_back(node);
+    }
+
+    // 对 vector 所有指针建立 ->next 关系
+    for (int i = 0; i < nodes.size() - 1; i++) {
+        nodes[i]->next = nodes[i + 1];
+    }
+
+    return nodes[0];
+}
+
 // 功能：寻找链表中间节点
 // 参数：链表首节点指针
 // 返回：链表中间节点指针（当链表节点数量为偶数 n 时，返回 mid 为 n/2，而不是 n/2 + 1）
@@ -131,6 +150,45 @@ ListNode* reverseList(ListNode *head) {
         head = next;
     }
     return reverseHead;
+}
+
+// 功能：判断链表是否循环链表
+// 参数：链表首节点指针
+// 返回：bool
+bool hasCycle(ListNode *head) {
+    if (head == NULL) {
+        return false;
+    }
+
+    ListNode *slow = head;
+    ListNode *fast = head;
+    while (true) {
+        // slow  前进一步
+        if (slow->next != NULL) {
+            slow = slow->next;
+        }
+        else {
+            return false;
+        }
+
+        // fast 前进两步
+        if (fast->next != NULL) {
+            if (fast->next->next != NULL) {
+                fast = fast->next->next;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
+
+        // slow 与 fast 相遇
+        if (slow == fast) {
+            return true;
+        }
+    }
 }
 
 //*******************vector*******************
@@ -263,12 +321,119 @@ template <class Tkey, class Tval> bool containsKeyInMap(map<Tkey, Tval>& mapp,
     return mapp.find(key) != mapp.end();
 }
 
+template <class Tkey, class Tval> bool containsValueInMap(map<Tkey, Tval>& mapp,
+                                                          Tval val) {
+    for (map<Tkey, Tval>::iterator iter = mapp.begin(); iter != mapp.end(); iter++) {
+        Tval oldVal = iter->second;
+        if (val == oldVal) {
+            return true;
+        }
+    }
+    return false;
+}
+
 //****************binary tree*****************
 // 功能：判断一个节点是否叶子
 // 参数：TreeNode *node
 // 返回：bool
 bool isLeafNode(TreeNode *node) {
     return (node->left == NULL && node->right == NULL);
+}
+
+// 功能：判断两棵二叉树是否相等
+// 参数：两棵二叉树的根节点
+// 返回：bool
+bool isSameTree(TreeNode *p, TreeNode *q) {
+    if (p == NULL && q == NULL) {
+        return true;
+    }
+    // 结构不同
+    if (p != NULL && q == NULL) {
+        return false;
+    }
+    // 结构不同
+    if (p == NULL && q != NULL) {
+        return false;
+    }
+    // 结构相同
+    else {      // 即 p != NULL && q != NULL
+        // 值不同
+        if (p->val != q->val) {
+            return false;
+        }
+        // 值相同
+        bool isSameLeft = isSameTree(p->left, q->left);
+        bool isSameRight = isSameTree(p->right, q->right);
+
+        if (isSameLeft && isSameRight) {
+            return true;
+        }
+        return false;
+    }
+}
+
+// 功能：左右反转二叉树
+// 参数：根节点
+// 返回：根节点
+TreeNode* invertTreeInPlace(TreeNode *root) {
+    // root 为空结点
+    if (root == NULL) {
+        return NULL;
+    }
+
+    // root 是叶子节点
+    if (root->left == NULL &&
+        root->right == NULL) {
+        return root;
+    }
+
+    // 反转左子树
+    TreeNode *left = invertTreeInPlace(root->left);
+
+    // 反转右子树
+    TreeNode *right = invertTreeInPlace(root->right);
+
+    // 交换左右子结点
+    TreeNode *temp = root->left;
+    root->left = root->right;
+    root->right = temp;
+
+    // 返回根结点
+    return root;
+}
+
+// 功能：求二叉树最大深度
+// 参数：根节点
+// 返回：最大深度
+int maxDepth(TreeNode *root) {
+    if (root == NULL) {
+        return 0;
+    }
+
+    int leftDepth = maxDepth(root->left);
+    int rightDepth = maxDepth(root->right);
+
+    return MAX_TWO(leftDepth, rightDepth) + 1;
+}
+
+// 功能：广度优先遍历二叉树
+// 参数：根节点
+// 返回：void
+void BFS(TreeNode *root) {
+    vector<TreeNode *> queue;
+    queue.push_back(root);
+    int index = 0;
+    while (index < queue.size()) {
+        TreeNode *node = queue[index];
+        index++;
+        cout << node->val << ' ';
+
+        if (node->left != NULL)
+            queue.push_back(node->left);
+
+        if (node->right != NULL)
+            queue.push_back(node->right);
+    }
 }
 
 //*******************others*******************
@@ -293,4 +458,10 @@ bool isVowel(char c) {
 // log 对数函数换底公式
 double logbase(double n, double base) {
     return log(n) / log(base);
+}
+
+// 求两个数的平均值
+int average(int low, int high) {
+    //return (low + high) / 2;    // 这样会 int 溢出
+    return low + (high - low) / 2;
 }

@@ -1,8 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <map>
 #include <frequently-used-code-snippets.h>
-using namespace std;
 
 class Solution {
 public:
@@ -11,7 +7,7 @@ public:
 
         // 遍历数组，添加到 mapp
         for (int i : nums) {
-            addToMap(mapp, i);
+            incrementKeyCountInMap(mapp, nums[i]);
         }
 
         // 遍历 mapp，找出 majority element

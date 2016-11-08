@@ -1,5 +1,3 @@
-#include <iostream>
-#include <vector>
 #include <frequently-used-code-snippets.h>
 using namespace std;
 
@@ -49,22 +47,6 @@ public:
 private:
     const int INIT_VAL = -1;
 };
-
-ListNode* convertArrayToList(int* arr, int len) {
-    // 用 vector 保存所有指针
-    vector<ListNode*> nodes;
-    for (int i = 0; i < len; i++) {
-        ListNode* node = new ListNode(arr[i]);      // 新建 ListNode*
-        nodes.push_back(node);
-    }
-
-    // 对 vector 所有指针建立 ->next 关系
-    for (int i = 0; i < nodes.size() - 1; i++) {
-        nodes[i]->next = nodes[i + 1];
-    }
-
-    return nodes[0];
-}
 
 int main() {
     // 测试一

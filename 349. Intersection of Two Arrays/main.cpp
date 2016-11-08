@@ -1,7 +1,4 @@
-#include <iostream>
-#include <vector>
 #include <frequently-used-code-snippets.h>
-using namespace std;
 
 class Solution {
 public:
@@ -10,7 +7,7 @@ public:
         for (int ele1 : nums1) {
             for (int ele2 : nums2) {
                 if (ele2 == ele1) {
-                    addToIntersec(intersec, ele2);
+                    addToVectorUnique(intersec, ele2);
                 }
             }
         }

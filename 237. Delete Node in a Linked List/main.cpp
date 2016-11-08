@@ -4,7 +4,7 @@ using namespace std;
 
 class Solution {
 public:
-    void deleteNode(ListNode* node) {
+    void deleteNode(ListNode *node) {
         if (node == NULL) {
             return;
         }

@@ -1,10 +1,9 @@
-#include <iostream>
 #include <frequently-used-code-snippets.h>
 using namespace std;
 
 class Solution {
 public:
-    bool isSameTree(TreeNode* p, TreeNode* q) {
+    bool isSameTree(TreeNode *p, TreeNode *q) {
         if (p == NULL && q == NULL) {
             return true;
         }

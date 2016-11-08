@@ -47,23 +47,6 @@ public:
 
         return reverseVv;
     }
-
-    void BFS(TreeNode *root) {
-        vector<TreeNode *> queue;
-        queue.push_back(root);
-        int index = 0;
-        while (index < queue.size()) {
-            TreeNode *node = queue[index];
-            index++;
-            cout << node->val << ' ';
-
-            if (node->left != NULL)
-                queue.push_back(node->left);
-
-            if (node->right != NULL)
-                queue.push_back(node->right);
-        }
-    }
 };
 
 int main() {

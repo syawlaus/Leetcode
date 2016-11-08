@@ -4,7 +4,7 @@ using namespace std;
 
 class Solution {
 public:
-    //int maxProfit(vector<int>& prices) {    // too slow
+    //int maxProfit(vector<int>& prices) {    // Time Limit Exceeded
     //    int max = 0;
     //    for (int i = 0; i < prices.size(); i++) {   // 卖出价格
     //        for (int j = 0; j < i; j++) {           // 买入价格
@@ -17,12 +17,12 @@ public:
     //    return max;
     //}
 
-    //int maxProfit2(vector<int>& prices) {   // wrong answer
+    //int maxProfit2(vector<int>& prices) {   // Wrong Answer
     //    int size = prices.size();
     //    int minBuyIndex = -1;
     //    int minBuyPrice = LONG_MAX;
     //    int maxSellPrice = 0;
-
+    //
     //    // 找出最小买入价格
     //    for (int i = 0; i < size; i++) {
     //        if (prices[i] < minBuyPrice) {
@@ -30,7 +30,7 @@ public:
     //            minBuyPrice = prices[i];
     //        }
     //    }
-
+    //
     //    // 找出最大卖出价格
     //    for (int i = minBuyIndex + 1; i < size; i++) {
     //        if (prices[i] > maxSellPrice) {

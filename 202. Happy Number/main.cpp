@@ -1,5 +1,3 @@
-#include <iostream>
-#include <vector>
 #include <frequently-used-code-snippets.h>
 using namespace std;
 
@@ -17,8 +15,7 @@ public:
                 cout << "sumSquare == 1，return true" << endl;
                 return true;
             }
-
-            if (containsElement(v, sumSquare)) {    // 死循环
+            if (containsElementInVector(v, sumSquare)) {    // 死循环
                 cout << "vector 已存在 " << sumSquare << "，死循环，return false" << endl;
                 return false;
             }

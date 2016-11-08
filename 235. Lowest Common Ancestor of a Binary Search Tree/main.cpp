@@ -5,9 +5,9 @@ using namespace std;
 class Solution {
 public:
     // 求 v, w 在以 root 为根节点的二叉搜索树的最近公共祖先
-    TreeNode* lowestCommonAncestor(TreeNode* root,
-                                   TreeNode* v,
-                                   TreeNode* w) {
+    TreeNode* lowestCommonAncestor(TreeNode *root,
+                                   TreeNode *v,
+                                   TreeNode *w) {
         if (v == NULL || w == NULL) {
             return NULL;
         }
@@ -33,10 +33,9 @@ public:
     }
 
     // 判断 v, w 在 root 的哪棵子树下
-    int subtree(TreeNode* root,
-        TreeNode* v,
-        TreeNode* w) {
-
+    int subtree(TreeNode *root,
+                TreeNode *v,
+                TreeNode *w) {
         //  v, w 都在 root 左子树
         if (root->val > v->val &&
             root->val > w->val) {

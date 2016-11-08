@@ -1,6 +1,4 @@
-#include <iostream>
 #include <frequently-used-code-snippets.h>
-using namespace std;
 
 class Solution {
 public:

@@ -6,7 +6,7 @@ using namespace std;
 class Solution {
 public:
     // 方法一：反转指针
-    //ListNode* reverseList(ListNode* head) {
+    //ListNode* reverseList(ListNode *head) {
     //    if (head == NULL) {
     //        return NULL;
     //    }
@@ -20,7 +20,7 @@ public:
     //    }
     //
     //    // 此时 head->next == NULL，即是到达末尾元素
-    //    ListNode* tail = head;  // 用来返回的
+    //    ListNode *tail = head;  // 用来返回的
     //    for (int i = nodes.size() - 1; i >= 0; i--) {
     //        head->next = nodes[i];
     //        head = head->next;
@@ -30,14 +30,14 @@ public:
     //}
 
     // 方法二：反转值
-    ListNode* reverseList2(ListNode* head) {
+    ListNode* reverseList2(ListNode *head) {
         if (head == NULL) {
             return NULL;
         }
 
         // 遍历整个 Linkedlist，把各个节点的 val 保存到 vector
         vector<int> nodeVals;
-        ListNode* tempHead = head;
+        ListNode *tempHead = head;
         while (tempHead != NULL) {
             nodeVals.push_back(tempHead->val);
             tempHead = tempHead->next;
@@ -71,7 +71,7 @@ int main() {
     printList(&n1);
 
     Solution sol;
-    ListNode* head;
+    ListNode *head;
 
     head = sol.reverseList2(&n1);
     printList(head);

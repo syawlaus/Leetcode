@@ -24,10 +24,10 @@ public:
     }
 
     string reverseString2(string& s) {
-        char* pHead = &s[0];
+        char *pHead = &s[0];
 
         int len = s.length();
-        char* pTail = &s[len - 1];
+        char *pTail = &s[len - 1];
 
         while (pHead < pTail) {
             // swap chars which pHead & pTail point to

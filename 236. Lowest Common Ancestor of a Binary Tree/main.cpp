@@ -1,14 +1,11 @@
-#include <iostream>
-#include <map>
 #include <frequently-used-code-snippets.h>
-using namespace std;
 
 class Solution {
 public:
     // 求 v, w 在以 root 为根节点的二叉树的最近公共祖先
-    TreeNode* lowestCommonAncestor(TreeNode* root,
-                                   TreeNode* v,
-                                   TreeNode* w) {
+    TreeNode* lowestCommonAncestor(TreeNode *root,
+                                   TreeNode *v,
+                                   TreeNode *w) {
         if (v == NULL || w == NULL) {
             return NULL;
         }
@@ -27,8 +24,8 @@ public:
         int depthW = depth(root, w, mapParents);
 
         // 第 2.2 步
-        TreeNode* highNode;     // highNode 是深度较小的节点，在树中的位置较高
-        TreeNode* lowNode;      //  lowNode 是深度较大的节点，在树中的位置较低
+        TreeNode *highNode;     // highNode 是深度较小的节点，在树中的位置较高
+        TreeNode *lowNode;      // lowNode 是深度较大的节点，在树中的位置较低
         int depthDiff;
 
         if (depthV < depthW) {
@@ -59,10 +56,10 @@ public:
     }
 
     // 填充 map，包含 root
-    void fillMapParents(TreeNode* root,
+    void fillMapParents(TreeNode *root,
                         map<TreeNode*, TreeNode*>& mapParents) {
         fillMapParentsWithoutRoot(root, mapParents);
-        addToMap(root, NULL, mapParents);   // 给根节点加上父节点 NULL
+        addToMap(mapParents, root, (TreeNode*) NULL);   // 给根节点加上父节点 NULL
     }
 
     // 填充 map，不包含 root
@@ -72,17 +69,15 @@ public:
             return;
         }
 
-        addToMap(root->left, root, mapParents);
-        addToMap(root->right, root, mapParents);
+        addToMap(mapParents, root->left, root);
+        addToMap(mapParents, root->right, root);
 
         fillMapParentsWithoutRoot(root->left, mapParents);
         fillMapParentsWithoutRoot(root->right, mapParents);
     }
 
-    
-
-    int depth(TreeNode* root,
-              TreeNode* node,
+    int depth(TreeNode *root,
+              TreeNode *node,
               map<TreeNode*, TreeNode*>& mapParents) {
         // 利用 map 往上回溯，求出 node 的深度
         int depth = 1;  // root 深度为 1
@@ -105,8 +100,8 @@ public:
 
     void printMapParents(map<TreeNode*, TreeNode*>& mapParents) {
         for (map<TreeNode*, TreeNode*>::iterator iter = mapParents.begin(); iter != mapParents.end(); iter++) {
-            TreeNode* node = iter->first;
-            TreeNode* parent = iter->second;
+            TreeNode *node = iter->first;
+            TreeNode *parent = iter->second;
             if (parent == NULL) {
                 cout << node->val << " 的父节点是 NULL" << endl;
             }
@@ -118,9 +113,9 @@ public:
     }
 
     void printAllNodesDepth(map<TreeNode*, TreeNode*>& mapParents,
-                            TreeNode* root) {
+                            TreeNode *root) {
         for (map<TreeNode*, TreeNode*>::iterator iter = mapParents.begin(); iter != mapParents.end(); iter++) {
-            TreeNode* node = iter->first;
+            TreeNode *node = iter->first;
             int dep = depth(root, node, mapParents);
             cout << node->val << " 的深度为 " << dep << endl;
         }

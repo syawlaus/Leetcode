@@ -1,6 +1,4 @@
-#include <map>
-#include <iostream>
-using namespace std;
+#include <frequently-used-code-snippets.h>
 
 class Solution {
 public:
@@ -27,18 +25,6 @@ public:
             }
         }
         return true;
-    }
-
-private:
-    bool containsValueInMap(map<char, char>& mapp,
-                            char val) {
-        for (map<char, char>::iterator iter = mapp.begin(); iter != mapp.end(); iter++) {
-            char oldVal = iter->second;
-            if (val == oldVal) {
-                return true;
-            }
-        }
-        return false;
     }
 };
 

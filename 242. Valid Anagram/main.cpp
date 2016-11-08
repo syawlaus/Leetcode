@@ -1,8 +1,4 @@
-#include <iostream>
-#include <string>
-#include <map>
 #include <frequently-used-code-snippets.h>
-using namespace std;
 
 class Solution {
 public:
@@ -48,7 +44,6 @@ public:
     }
 
     bool isAnagram2(string& s, string& t) {
-
         // s, t 长度不同，则 t 肯定不是 s 的易位构词
         if (s.size() != t.size()) {
             return false;
@@ -57,13 +52,13 @@ public:
         // 把 s 全部字符添加到 mapS
         map<char, int> mapS;
         for (char cs : s) {
-            addToMap(cs, mapS);
+            incrementKeyCountInMap(mapS, cs);
         }
 
         // 把 t 全部字符添加到 mapT
         map<char, int> mapT;
         for (char ct : t) {
-            addToMap(ct, mapT);
+            incrementKeyCountInMap(mapT, ct);
         }
 
         // 如果 mapS, mapT 长度不同，则 t 肯定不是 s 的易位构词

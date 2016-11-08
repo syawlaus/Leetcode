@@ -1,5 +1,4 @@
 #include <frequently-used-code-snippets.h>
-using namespace std;
 
 class Solution {
 public:
@@ -21,22 +20,10 @@ public:
         }
 
         // 左、右子树都平衡，判断两者高度差是否不大于 1
-        int leftHeight = getHeight(root->left);
-        int rightHeight = getHeight(root->right);
+        int leftHeight = maxDepth(root->left);
+        int rightHeight = maxDepth(root->right);
 
         return (abs(leftHeight - rightHeight) <= 1);
-    }
-
-private:
-    int getHeight(TreeNode *root) {
-        if (root == NULL) {
-            return 0;
-        }
-
-        int leftHeight = getHeight(root->left);
-        int rightHeight = getHeight(root->right);
-        
-        return MAX_TWO(leftHeight, rightHeight) + 1;
     }
 };
 
@@ -53,5 +40,5 @@ int main() {
     D.left = &E;
 
     Solution sol;
-    cout << sol.isBalanced(&A);
+    cout << sol.isBalanced(&A) << endl;
 }

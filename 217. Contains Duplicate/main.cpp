@@ -1,15 +1,11 @@
-#include <iostream>
-#include <vector>
-#include <map>
 #include <frequently-used-code-snippets.h>
-using namespace std;
 
 class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
         map<int, int> mapp;
         for (int i : nums) {
-            if (containsKey(mapp, i)) {
+            if (containsKeyInMap(mapp, i)) {
                 return true;
             }
             else {
@@ -27,5 +23,5 @@ int main() {
 
     Solution sol;
     bool b = sol.containsDuplicate(v);
-    cout << ((b == true) ? "true" : "false");
+    cout << ((b == true) ? "true" : "false") << endl;
 }
