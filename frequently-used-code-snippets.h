@@ -90,7 +90,7 @@ struct TreeNode {
 */
 //********************list********************
 // 功能：打印单向链表
-// 参数：链表首元素指针
+// 参数：链表首节点指针
 // 返回：void
 void printList(ListNode *head) {
     while (head != NULL) {
@@ -98,6 +98,39 @@ void printList(ListNode *head) {
         head = head->next;
     }
     cout << endl;
+}
+
+// 功能：寻找链表中间节点
+// 参数：链表首节点指针
+// 返回：链表中间节点指针（当链表节点数量为偶数 n 时，返回 mid 为 n/2，而不是 n/2 + 1）
+ListNode* findMiddleNode(ListNode *head) {
+    ListNode *fast = head;
+    ListNode *slow = head;
+    while (fast != NULL &&
+        fast->next != NULL &&
+        fast->next->next != NULL) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    return slow;
+}
+
+// 功能：反转单向链表
+// 参数：链表首节点指针
+// 返回：反转链表首节点指针
+ListNode* reverseList(ListNode *head) {
+    ListNode *reverseHead = NULL;
+    ListNode *node = NULL;
+    while (head != NULL) {
+        ListNode *next = head->next;
+        if (next == NULL) {   // 末尾节点 = 反转链表的首节点
+            reverseHead = head;
+        }
+        head->next = node;
+        node = head;
+        head = next;
+    }
+    return reverseHead;
 }
 
 //*******************vector*******************
