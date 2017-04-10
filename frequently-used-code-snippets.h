@@ -104,6 +104,10 @@ void printList(ListNode *head) {
 // 参数：数组，数组长度
 // 返回：链表首节点指针
 ListNode* convertArrayToList(int* arr, int len) {
+    if (len == 0) {
+        return NULL;
+    }
+
     // 用 vector 保存所有指针
     vector<ListNode*> nodes;
     for (int i = 0; i < len; i++) {
